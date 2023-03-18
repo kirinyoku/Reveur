@@ -1,17 +1,36 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import { Home, Product, Category } from '../pages';
+import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+
+const Layout = () => {
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <span>Home</span>,
-  },
-  {
-    path: '/products/:id',
-    element: <span>Category</span>,
-  },
-  {
-    path: '/product/:id',
-    element: <span>Product</span>,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/products/:id',
+        element: <Category />,
+      },
+      {
+        path: '/product/:id',
+        element: <Product />,
+      },
+    ],
   },
 ]);
 
