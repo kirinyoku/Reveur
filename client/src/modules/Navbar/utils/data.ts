@@ -1,4 +1,6 @@
-export const pages = [
+import { PageInfo } from '../types/BurgerMenu';
+
+export const pages: PageInfo[] = [
   {
     title: 'Home',
     to: '/',
@@ -20,14 +22,14 @@ export const pages = [
 export const categories = [
   {
     title: 'Women',
-    to: '/1',
+    to: 'products/1',
   },
   {
     title: 'Men',
-    to: '/2',
+    to: 'products/2',
   },
   {
     title: 'Children',
-    to: '/3',
+    to: 'products/3',
   },
 ];

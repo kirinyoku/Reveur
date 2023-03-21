@@ -6,8 +6,8 @@ import { pages, categories } from '../utils/data';
 
 const Navbar = () => {
   return (
-    <header className="grid gap-2 p-4 max-w-[1100px] m-auto">
-      <div className="flex justify-between items-center border-b-2 pb-3">
+    <header className="grid gap-2 px-4 pt-1 max-w-[1100px] m-auto h-[5.625rem]">
+      <div className="flex justify-between items-center border-b-2">
         <BurgerMenu anchor="left" pages={pages} className="flex-1" />
         <Logo />
         <ConsumerMenu />

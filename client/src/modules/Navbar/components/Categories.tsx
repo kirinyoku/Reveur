@@ -3,10 +3,13 @@ import { CategoriesProps } from '../types/Categories';
 
 const Categories = ({ categories }: CategoriesProps) => {
   return (
-    <div className="flex justify-center gap-3 sm:text-xl">
+    <div className="flex justify-center gap-3">
       {categories.map((category) => {
         return (
-          <Link key={category.title} className="border-black hover:border-b-2" to={category.to}>
+          <Link
+            key={category.title}
+            className="text-xl font-medium text-gray-600 hover:text-black transition-colors"
+            to={category.to}>
             {category.title}
           </Link>
         );
