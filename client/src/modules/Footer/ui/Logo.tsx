@@ -2,11 +2,9 @@ import { Link } from 'react-router-dom';
 
 const Logo = () => {
   return (
-    <h2 className="hidden md:block">
-      <Link to="/" className="text-3xl">
-        Rêveur
-      </Link>
-    </h2>
+    <Link to="/" className="hidden md:block text-3xl">
+      <h2>Rêveur</h2>
+    </Link>
   );
 };
 

@@ -1,6 +1,6 @@
-import Footer from './Footer';
-import Navbar from '../modules/Navbar';
-import { Home, Product, Category } from '../pages';
+import Footer from '../../Footer';
+import Navbar from '../../Navbar';
+import { HomePage, ProductPage, CategoryPage } from '../../../pages';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 
 const Layout = () => {
@@ -20,15 +20,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: '/products/:id',
-        element: <Category />,
+        element: <CategoryPage />,
       },
       {
         path: '/product/:id',
-        element: <Product />,
+        element: <ProductPage />,
       },
     ],
   },

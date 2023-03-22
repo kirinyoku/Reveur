@@ -6,8 +6,8 @@ import Logo from '../ui/Logo';
 
 const Footer = () => {
   return (
-    <footer className="max-w-[1100px] m-auto p-4">
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mb-8">
+    <footer className="max-w-[1100px] m-auto px-4">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm my-4">
         <List listName={footerLists.categories.listName} items={footerLists.categories.items} />
         <List listName={footerLists.links.listName} items={footerLists.links.items} />
         <List listName={footerLists.about.listName} items={footerLists.about.items} />
@@ -15,8 +15,8 @@ const Footer = () => {
       </section>
       <section>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between">
-          <Logo />
           <p>© Copyright 2023. All Rights Reserved</p>
+          <Logo />
           <img
             className="h-12"
             src="./img/payment.png"

@@ -3,7 +3,7 @@ import { CardProps } from '../types/CardProps';
 
 const Card = ({ card }: CardProps) => {
   return (
-    <Link className="w-full max-w-[22rem] flex flex-col gap-3" to={`/product/${card.id}`}>
+    <Link className="w-full max-w-[18rem] flex flex-col gap-3" to={`/product/${card.id}`}>
       <div>
         <div className="w-full h-[24rem] overflow-hidden relative mb-2">
           {card.isNew && (

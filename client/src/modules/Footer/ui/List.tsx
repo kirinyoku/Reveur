@@ -12,7 +12,13 @@ const List = ({ items, listName }: ListProps) => {
       {items.map((item) => {
         return (
           <li key={item.content}>
-            {item.to ? <Link to={item.to}>{item.content}</Link> : item.content}
+            {item.to ? (
+              <Link className="hover:underline" to={item.to}>
+                {item.content}
+              </Link>
+            ) : (
+              item.content
+            )}
           </li>
         );
       })}
