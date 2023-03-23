@@ -2,6 +2,7 @@ import { useState } from 'react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BalanceIcon from '@mui/icons-material/Balance';
+import Button from '../../../ui/Button';
 
 const ProductInteraction = () => {
   const [quntity, setQuntity] = useState(1);
@@ -28,9 +29,9 @@ const ProductInteraction = () => {
           +
         </button>
       </div>
-      <button className="md:w-64 p-2 uppercase bg-blue-500 text-white">
+      <Button>
         <AddShoppingCartIcon /> add to cart
-      </button>
+      </Button>
       <ul className="flex gap-4 py-4 lg:mb-12 text-blue-500 font-medium text-sm lg:text-base">
         <li>
           <button className="uppercase">
