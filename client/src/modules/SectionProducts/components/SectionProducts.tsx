@@ -1,9 +1,10 @@
 import Card from '../../../ui/Card';
 import useFetch from '../../../hooks/useFetch';
 import { SectionProductsProps } from '../types/SectionProducts';
+import { IProduct } from '../../../types/CardProps';
 
 const SectionProducts = ({ type }: SectionProductsProps) => {
-  const { data, isLoading, isError } = useFetch(
+  const { data, isLoading, isError } = useFetch<IProduct[]>(
     `/products?populate=*&[filters][type][$eq]=${type}`,
   );
 
@@ -20,9 +21,7 @@ const SectionProducts = ({ type }: SectionProductsProps) => {
         </p>
       </div>
       <div className="w-full grid place-items-center gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
-        {data.map((product) => (
-          <Card key={product.id} card={product} />
-        ))}
+        {data && data.map((product) => <Card key={product.id} card={product} />)}
       </div>
     </section>
   );

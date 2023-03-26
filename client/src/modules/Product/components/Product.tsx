@@ -1,16 +1,18 @@
 import ProductInteraction from './ProductInteraction';
 import ProductPreview from './ProductPreview';
+import useFetch from '../../../hooks/useFetch';
+import { useParams } from 'react-router-dom';
+import { IProduct } from '../../../types/CardProps';
 
 const Product = () => {
-  const data = [
-    'https://static.zara.net/photos///2023/V/0/1/p/1165/130/800/2/w/850/1165130800_1_1_1.jpg?ts=1675945134729',
-    'https://static.zara.net/photos///2023/V/0/1/p/1165/130/800/2/w/850/1165130800_2_1_1.jpg?ts=1675945197886',
-  ];
+  const id = useParams().id;
+
+  const { data, isLoading, isError } = useFetch<IProduct>(`/products/${id}?populate=*`);
 
   return (
     <>
-      <ProductPreview data={data} />
-      <ProductInteraction />
+      {data && <ProductPreview data={data} />}
+      {data && <ProductInteraction data={data} />}
     </>
   );
 };

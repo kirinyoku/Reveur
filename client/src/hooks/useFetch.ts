@@ -1,9 +1,8 @@
-import { api } from '../utils/api';
+import axios from '../utils/axios';
 import { useEffect, useState } from 'react';
-import { Product } from '../types/CardProps';
 
-const useFetch = (url: string) => {
-  const [data, setData] = useState<Product[]>([]);
+const useFetch = <T>(url: string) => {
+  const [data, setData] = useState<T>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -11,7 +10,7 @@ const useFetch = (url: string) => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await api.get(url);
+        const res = await axios.get(url);
         setData(res.data.data);
       } catch {
         setIsError(true);

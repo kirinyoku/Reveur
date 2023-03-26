@@ -1,9 +1,6 @@
-import List from './CardList';
-import { useParams } from 'react-router-dom';
+import CardList from './CardList';
 
-const SectionCategory = () => {
-  const categoryId = parseInt(useParams().id as string);
-
+const SectionCategory = (props: { categoryId: number }) => {
   return (
     <section className="grow-[4] px-3 shrink basis-0">
       <img
@@ -11,7 +8,7 @@ const SectionCategory = () => {
         src="https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600"
         alt=""
       />
-      <List categoryId={categoryId} />
+      <CardList categoryId={props.categoryId} />
     </section>
   );
 };

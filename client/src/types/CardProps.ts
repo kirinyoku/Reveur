@@ -1,9 +1,10 @@
 export interface CardProps {
-  card: Product;
+  card: IProduct;
 }
-export interface Product {
+export interface IProduct {
   id: number;
   attributes: Attributes;
+  quantity?: number;
 }
 export interface Attributes {
   title: string;

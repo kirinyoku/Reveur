@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { Badge } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 import SearchIcon from '@mui/icons-material/Search';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -9,6 +11,8 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import Cart from '../../Cart';
 
 const ConsumerMenu = () => {
+  const products = useSelector((state: RootState) => state.cart.products);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -35,7 +39,7 @@ const ConsumerMenu = () => {
           <FavoriteBorderOutlinedIcon className={iconStyles} />
         </Link>
         <button onClick={handleClick}>
-          <Badge badgeContent={'0'} color="primary">
+          <Badge badgeContent={products.length} color="primary">
             <ShoppingCartOutlinedIcon className={iconStyles} />
           </Badge>
         </button>

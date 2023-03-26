@@ -1,11 +1,29 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BalanceIcon from '@mui/icons-material/Balance';
 import Button from '../../../ui/Button';
+import { ProductProps } from '../types/Product';
+import { addToCart } from '../../../store/cartReducer';
 
-const ProductInteraction = () => {
-  const [quntity, setQuntity] = useState(1);
+const ProductInteraction = ({ data }: ProductProps) => {
+  const [quantity, setQuntity] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const add = () => {
+    dispatch(
+      addToCart({
+        id: data.id,
+        title: data.attributes.title,
+        desc: data.attributes.desc,
+        img: data.attributes.img.data.attributes.url,
+        price: data.attributes.currentPrice,
+        quantity,
+      }),
+    );
+  };
 
   return (
     <section className="flex flex-col gap-4 flex-grow-[1] shrink basis-0">
@@ -22,14 +40,14 @@ const ProductInteraction = () => {
           onClick={(e) => setQuntity((prev) => (prev === 1 ? 1 : prev - 1))}>
           -
         </button>
-        <span className="flex justify-center items-center w-2">{quntity}</span>
+        <span className="flex justify-center items-center w-2">{quantity}</span>
         <button
           className="flex justify-center items-center h-8 w-8 bg-gray-200 text-xl"
           onClick={(e) => setQuntity((prev) => prev + 1)}>
           +
         </button>
       </div>
-      <Button>
+      <Button onClick={add}>
         <AddShoppingCartIcon /> add to cart
       </Button>
       <ul className="flex gap-4 py-4 lg:mb-12 text-blue-500 font-medium text-sm lg:text-base">
