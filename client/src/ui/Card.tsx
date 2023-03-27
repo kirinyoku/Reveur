@@ -26,7 +26,9 @@ const Card = ({ card }: CardProps) => {
         </div>
         <h3 className="text-xl font-base">{card.attributes.title}</h3>
         <div className="flex gap-3 text-lg">
-          <del className="text-gray-700 line-through">${card.attributes.oldPrice}</del>
+          {card.attributes.oldPrice && (
+            <del className="text-gray-700 line-through">${card.attributes.oldPrice}</del>
+          )}
           <strong className="font-semibold">${card.attributes.currentPrice}</strong>
         </div>
       </div>

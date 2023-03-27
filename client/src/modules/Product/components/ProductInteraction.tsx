@@ -25,15 +25,14 @@ const ProductInteraction = ({ data }: ProductProps) => {
     );
   };
 
+  const calcPrice = () => (quantity * data.attributes.currentPrice).toFixed(2);
+
   return (
-    <section className="flex flex-col gap-4 flex-grow-[1] shrink basis-0">
-      <h2 className="text-3xl font-semibold">Title</h2>
-      <strong className="text-blue-500 text-2xl font-medium">$199</strong>
-      <p className="text-lg font-light">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, quasi illum amet nesciunt
-        culpa excepturi possimus. Magnam illo animi ea! Placeat pariatur ab, quibusdam officiis
-        illum nihil aspernatur eius corrupti!
-      </p>
+    <section className="flex flex-col gap-3 flex-grow-[1] shrink basis-0">
+      <h2 className="text-3xl font-semibold">{data.attributes.title}</h2>
+      <h3 className="text-2xl font-medium">by {data.attributes.brand}</h3>
+      <strong className="text-blue-500 text-2xl font-medium">${calcPrice()}</strong>
+      <p className="text-lg font-light">{data.attributes.desc}</p>
       <div className="flex items-center gap-3">
         <button
           className="flex justify-center items-center h-8 w-8 bg-gray-200 text-xl"
@@ -62,10 +61,10 @@ const ProductInteraction = ({ data }: ProductProps) => {
           </button>
         </li>
       </ul>
-      <ul className="flex flex-col gap-1 text-gray-500">
-        <li>Vendor: Polo</li>
-        <li>Product Type: T-Shirt</li>
-        <li>Tag: T-Shirt, Woman, Top</li>
+      <ul className="flex flex-col gap-1 text-gray-500 capitalize">
+        <li>Vendor: {data.attributes.brand}</li>
+        <li>Product Type: {data.attributes.sub_categories.data[0].attributes.title}</li>
+        <li>{`Tags: ${data.attributes.sub_categories.data[0].attributes.title}, ${data.attributes.categories.data[0].attributes.title}`}</li>
       </ul>
       <hr />
       <ul className="flex flex-col gap-2 text-gray-500 uppercase">

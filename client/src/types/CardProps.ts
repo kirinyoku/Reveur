@@ -20,6 +20,7 @@ export interface Attributes {
   img2: Img;
   categories: Categories;
   sub_categories: SubCategories;
+  brand: string;
 }
 
 export interface Img {
