@@ -2,11 +2,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Button from '../../../ui/Button';
+import axios from '../../../utils/axios';
 import { CartProps } from '../types/Cart';
 import { useSelector } from 'react-redux';
 import { UPLOAD_IMG_URL } from '../../../utils/constants';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, resetCart } from '../../../store/cartReducer';
+import { loadStripe } from '@stripe/stripe-js';
 import type { RootState } from '../../../store/store';
 
 const Cart = ({ open, handleClose, anchorEl }: CartProps) => {
@@ -29,6 +31,25 @@ const Cart = ({ open, handleClose, anchorEl }: CartProps) => {
 
   const reset = () => {
     dispatch(resetCart());
+  };
+
+  // it`s a public key
+  const stripePromise = loadStripe(
+    'pk_test_51MqIY3JKmZJy0bBPjzlVSKp56Hb37G2ZNcr7xOGu1BMyrALkJSs90crihhdqHcA3WutwEAAixhc7jm8TYTai0teo00t3ROUwhz',
+  );
+
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res = await axios.post('/orders', {
+        products,
+      });
+      await stripe?.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -71,7 +92,7 @@ const Cart = ({ open, handleClose, anchorEl }: CartProps) => {
         <span className="text-lg text-blue-500 font-medium">${totalPrice()}</span>
       </div>
       <div className="flex flex-col gap-2 items-start px-4 py-2">
-        <Button>proceed to checkout</Button>
+        <Button onClick={handlePayment}>proceed to checkout</Button>
         <button onClick={reset} className="text-red-500 hover:underline capitalize">
           reset cart
         </button>
