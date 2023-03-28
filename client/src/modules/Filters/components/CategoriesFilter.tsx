@@ -1,9 +1,11 @@
 import useFetch from '../../../hooks/useFetch';
 import { useState } from 'react';
 import { IProduct } from '../../../types/CardProps';
+import { useDispatch } from 'react-redux';
+import { setSelectedSubCategories } from '../../../store/filterReducer';
 
 const CategoriesFilter = (props: { categoryId: number }) => {
-  const [selectedSubCategories, setSelectedSubCategories] = useState<string[]>([]);
+  const dispatch = useDispatch();
 
   const { data, isLoading, isError } = useFetch<IProduct[]>(
     `/sub-categories?[filters][categories][id][$eq]=${props.categoryId}`,
@@ -12,11 +14,12 @@ const CategoriesFilter = (props: { categoryId: number }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
-    if (isChecked) {
-      setSelectedSubCategories([...selectedSubCategories, value]);
-    } else {
-      setSelectedSubCategories(selectedSubCategories.filter((item) => item !== value));
-    }
+    dispatch(
+      setSelectedSubCategories({
+        value,
+        isChecked,
+      }),
+    );
   };
 
   return (
@@ -30,7 +33,7 @@ const CategoriesFilter = (props: { categoryId: number }) => {
                 className="mb-2"
                 type="checkbox"
                 id={category.id.toString()}
-                value={category.id}
+                value={category.attributes.title}
                 onChange={handleChange}
               />
               <label className="ml-2 capitalize" htmlFor={category.id.toString()}>
