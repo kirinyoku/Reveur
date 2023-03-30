@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "HOSTNAME_PATH": "/usr/bin/hostname"
+    }
+  }
+}
