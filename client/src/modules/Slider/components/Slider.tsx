@@ -30,7 +30,7 @@ const Slider = () => {
   }, [sliderImages]);
 
   return (
-    <div className="h-[calc(100vh-5.625rem)] w-full overflow-hidden">
+    <div className="relative h-[calc(100vh-5.625rem)] w-full overflow-hidden">
       <div
         style={{ width: `${sliderWidth}`, transform: `translateX(${position})` }}
         className={`h-full flex transition-transform duration-700 md:duration-1000`}>
@@ -45,7 +45,7 @@ const Slider = () => {
           );
         })}
       </div>
-      <div className="flex justify-between absolute left-0 right-0 bottom-12 m-auto w-20">
+      <div className="flex justify-between absolute left-0 right-0 m-auto bottom-12 w-20">
         <SliderArrow direction="left" onClick={prevSlide} />
         <SliderArrow direction="right" onClick={nextSlide} />
       </div>

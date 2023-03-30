@@ -52,6 +52,14 @@ const Cart = ({ open, handleClose, anchorEl }: CartProps) => {
     }
   };
 
+  if (products.length === 0) {
+    return (
+      <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
+        <h2 className="text-gray-800 text-xl py-2 px-4">Your cart is empty.</h2>
+      </Menu>
+    );
+  }
+
   return (
     <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
       <h2 className="text-gray-800 text-2xl px-4 py-2">Product in your cart</h2>
