@@ -5,7 +5,6 @@ import Button from '../../../ui/Button';
 import axios from '../../../utils/axios';
 import { CartProps } from '../types/Cart';
 import { useSelector } from 'react-redux';
-import { UPLOAD_IMG_URL } from '../../../utils/constants';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, resetCart } from '../../../store/cartReducer';
 import { loadStripe } from '@stripe/stripe-js';
@@ -73,11 +72,7 @@ const Cart = ({ open, handleClose, anchorEl }: CartProps) => {
               padding: '0.5rem 1rem',
             }}
             key={product.id}>
-            <img
-              className="w-20 h-26 object-cover"
-              src={UPLOAD_IMG_URL + product.img}
-              alt={product.title}
-            />
+            <img className="w-20 h-26 object-cover" src={product.img} alt={product.title} />
             <div>
               <h3 className="text-lg font-semibold">{product.title}</h3>
               <p className="hidden md:block text-gray-600 pr-2">

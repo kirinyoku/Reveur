@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CardProps } from '../types/CardProps';
 
-const UPLOAD_URL = import.meta.env.VITE_UPLOAD_URL;
-
 const Card = ({ card }: CardProps) => {
   return (
     <Link className="w-full max-w-[18rem] flex flex-col gap-3" to={`/product/${card.id}`}>
@@ -15,12 +13,12 @@ const Card = ({ card }: CardProps) => {
           )}
           <img
             className="w-full h-full object-cover absolute z-[3] hover:z-[2]"
-            src={UPLOAD_URL + card.attributes.img.data.attributes.url}
+            src={card.attributes.img.data.attributes.url}
             alt="primary"
           />
           <img
             className="w-full h-full object-cover absolute z-[2] hover:z-[3]"
-            src={UPLOAD_URL + card.attributes.img2.data.attributes.url}
+            src={card.attributes.img2.data.attributes.url}
             alt="secondary"
           />
         </div>
