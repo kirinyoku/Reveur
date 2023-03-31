@@ -20,7 +20,7 @@ const SectionProducts = ({ type }: SectionProductsProps) => {
           blanditiis nam corrupti.
         </p>
       </div>
-      <div className="w-full grid place-items-center gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="w-full grid items-start place-items-center gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
         {data && data.map((product) => <Card key={product.id} card={product} />)}
       </div>
     </section>
