@@ -19,9 +19,9 @@ export default async function Product({ params }: ProductProps) {
   );
 }
 
-// export async function generateStaticParams() {
-//   const data = await fetch(`${process.env.BASE_URL}/api/products`);
-//   const products: Product[] = await data.json();
+export async function generateStaticParams() {
+  const data = await fetch(`${process.env.BASE_URL}/api/products`);
+  const products: Product[] = await data.json();
 
-//   return products.map((product) => ({ id: product.id }));
-// }
+  return products.map((product) => ({ id: product.id }));
+}
