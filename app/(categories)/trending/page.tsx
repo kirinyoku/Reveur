@@ -1,10 +1,11 @@
 'use client';
 
 import Card from '@/ui/Card';
+import Loading from '@/ui/Loading';
 import getProducts from '@/utils/getProducts';
 
 export default function Trending() {
-  const { data: products } = getProducts();
+  const { data: products, isLoading } = getProducts();
 
   const trendingProducts = products?.filter((product) => product.type === 'TRENDING');
 
@@ -17,6 +18,7 @@ export default function Trending() {
         talking about. So if you want to stay on top of the latest fashion trends, this is the
         section for you.
       </p>
+      {isLoading && <Loading />}
       <ul className="grid-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-full mx-auto px-4 md:px-8">
         {trendingProducts &&
           trendingProducts.map((product) => <Card product={product} key={product.id} />)}

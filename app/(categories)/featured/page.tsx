@@ -1,10 +1,11 @@
 'use client';
 
 import Card from '@/ui/Card';
+import Loading from '@/ui/Loading';
 import getProducts from '@/utils/getProducts';
 
 export default function Featured() {
-  const { data: products } = getProducts();
+  const { data: products, isLoading } = getProducts();
 
   const featuredProducts = products?.filter((product) => product.type === 'FEATURED');
 
@@ -18,6 +19,7 @@ export default function Featured() {
         see what&apos;s new and exciting in the world of fashion, be sure to check out our featured
         section.
       </p>
+      {isLoading && <Loading />}
       <ul className="grid-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-full mx-auto px-4 md:px-8">
         {featuredProducts &&
           featuredProducts.map((product) => <Card product={product} key={product.id} />)}

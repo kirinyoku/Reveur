@@ -17,8 +17,8 @@ export default function Navbar() {
         <div className="flex h-fit items-center space-between gap-4">
           <Search />
           <Cart />
-          {/* 1@ts-expect-error Async Server Component */}
-          {/* <UserAuth /> */}
+          {/* @ts-expect-error Async Server Component */}
+          <UserAuth />
         </div>
       </div>
     </header>

@@ -1,10 +1,11 @@
 'use client';
 
 import Card from '@/ui/Card';
+import Loading from '@/ui/Loading';
 import getProducts from '@/utils/getProducts';
 
 export default function NewSeason() {
-  const { data: products } = getProducts();
+  const { data: products, isLoading } = getProducts();
 
   const newSeasonProducts = products?.filter((product) => product.isNew === true);
 
@@ -17,6 +18,7 @@ export default function NewSeason() {
         special occasion or just looking to refresh your wardrobe, our new season collection is the
         perfect place to start.
       </p>
+      {isLoading && <Loading />}
       <ul className="grid-container grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-full mx-auto px-4 md:px-8">
         {newSeasonProducts &&
           newSeasonProducts.map((product) => <Card product={product} key={product.id} />)}

@@ -12,6 +12,9 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  theme: {
+    colorScheme: 'light',
+  },
   secret: process.env.AUTH_SECRET,
   providers: [
     GoogleProvider({
