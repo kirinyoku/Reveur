@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
         </Provider>
+        <script src="//code.tidio.co/n1vpq2ulqtka0aaowcascetsv3whhuwh.js" async></script>
       </body>
     </html>
   );
