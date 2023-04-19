@@ -14,11 +14,11 @@ export default async function Admin() {
       <section className="relative bg-white z-50">
         <div className="container mx-auto">
           <h1 className="text-4xl font-semibold text-center pt-2">Admin Panel</h1>
-          <Link
+          <a
             className="text-2xl font-medium my-2 block underline-offset-1 hover:underline"
             href="/">
             ← Back to Home
-          </Link>
+          </a>
           <CategoryForm />
           <SubCategoryForm />
           <ProductForm />
