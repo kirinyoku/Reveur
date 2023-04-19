@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import IconLogout from '@mui/icons-material/Logout';
 import { Avatar, IconButton, Tooltip, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
@@ -52,6 +53,11 @@ export default function ProfileMenu({ user }: ProfileMenuProps) {
         <MenuItem onClick={handleClose}>
           <button>Profile</button>
         </MenuItem>
+        {user.role === 'ADMIN' && (
+          <MenuItem onClick={handleClose}>
+            <Link href="/admin">Admin Panel</Link>
+          </MenuItem>
+        )}
         <MenuItem onClick={handleClose}>
           <button onClick={() => signOut()} className="flex gap-2 items-center w-full">
             <IconLogout fontSize="small" />
