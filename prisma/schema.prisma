@@ -13,7 +13,6 @@ datasource db {
 model Category {
   id             String        @id @default(cuid())
   title          String        @unique
-  imgURL         String
   products       Product[]
   sub_categories SubCategory[]
 }

@@ -52,20 +52,6 @@ export default function CategoryForm() {
             required
           />
         </fieldset>
-        <fieldset>
-          <label className="block text-gray-700 text-xl font-bold mb-2" htmlFor="categoryImgURL">
-            imgURL
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            ref={inputImgURL}
-            type="text"
-            placeholder="category img URL"
-            id="categoryImgURL"
-            name="categoryImgURL"
-            required
-          />
-        </fieldset>
       </div>
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded focus:outline-none focus:shadow-outline"

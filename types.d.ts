@@ -7,7 +7,6 @@ type SubCategory = {
 type Category = {
   id?: string;
   title: string;
-  img: string;
   sub_categories?: SubCategory[];
 };
 

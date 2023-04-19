@@ -3,15 +3,14 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { title, img } = await request.json();
-    if (title.length < 2 && !img) {
+    const { title } = await request.json();
+    if (title.length < 2) {
       return NextResponse.error();
     }
 
     const res = await prisma.category.create({
       data: {
         title,
-        imgURL: img,
       },
     });
     return NextResponse.json(res);
