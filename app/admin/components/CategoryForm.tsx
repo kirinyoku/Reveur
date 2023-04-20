@@ -28,7 +28,7 @@ export default function CategoryForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputTitle.current && inputImgURL.current) {
-      addCategory({ title: inputTitle.current.value, img: inputImgURL.current.value });
+      addCategory({ title: inputTitle.current.value });
       inputTitle.current.value = '';
       inputImgURL.current.value = '';
     }
