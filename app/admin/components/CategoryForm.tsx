@@ -13,7 +13,7 @@ export default function CategoryForm() {
 
   const { mutate: addCategory } = useMutation({
     mutationFn: (title: string) => {
-      return ky.post('/api/categories', { json: { title } }).json();
+      return ky.post('/api/categories', { json: title }).json();
     },
     onError: () => {
       toast.error('Error');

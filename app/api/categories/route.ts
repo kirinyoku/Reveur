@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { title }: { title: string } = await request.json();
+    const title: string = await request.json();
     if (title.length < 2) {
       return NextResponse.error();
     }
