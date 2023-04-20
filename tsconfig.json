@@ -32,7 +32,8 @@
     "prisma/client.ts",
     "prisma/client.ts",
     "app/api/auth/[...next]",
-    "pages/api/auth/[...nextauth].ts"
+    "pages/api/auth/[...nextauth].ts",
+    "app/api/checkout_sessions/route.js"
   ],
   "exclude": ["node_modules"]
 }

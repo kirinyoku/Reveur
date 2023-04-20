@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { SwipeableDrawer, Box, Badge } from '@mui/material';
+import { loadStripe } from '@stripe/stripe-js';
+import ky from 'ky';
 import Button from '@/ui/Button';
 import CartItem from './CartItem';
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,7 +12,6 @@ import useCartStore from '@/store/cart';
 import WorkOffIcon from '@mui/icons-material/WorkOff';
 
 export default function Cart() {
-  const [value, setValue] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const products = useCartStore((state) => state.products);
@@ -19,8 +20,21 @@ export default function Cart() {
     setIsOpen(isOpen);
   };
 
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  // public key
+  const stripePromise = loadStripe(
+    'pk_test_51MqIY3JKmZJy0bBPjzlVSKp56Hb37G2ZNcr7xOGu1BMyrALkJSs90crihhdqHcA3WutwEAAixhc7jm8TYTai0teo00t3ROUwhz',
+  );
+
+  const submitPayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res: any = await ky.post('/api/checkout_sessions', { json: products }).json();
+      await stripe!.redirectToCheckout({
+        sessionId: res?.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const totalPrice = () => {
@@ -65,7 +79,9 @@ export default function Cart() {
               </div>
             </div>
             <div className="grid gap-2 px-2 py-2">
-              <Button variant="secondary">proceed to checkout</Button>
+              <Button onClick={submitPayment} variant="secondary">
+                proceed to checkout
+              </Button>
             </div>
           </>
         ) : (
