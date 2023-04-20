@@ -8,13 +8,12 @@ import { useQueryClient } from '@tanstack/react-query';
 
 export default function CategoryForm() {
   const inputTitle = useRef<HTMLInputElement | null>(null);
-  const inputImgURL = useRef<HTMLInputElement | null>(null);
 
   const client = useQueryClient();
 
   const { mutate: addCategory } = useMutation({
-    mutationFn: (category: Category) => {
-      return ky.post('/api/categories', { json: category }).json();
+    mutationFn: (title: string) => {
+      return ky.post('/api/categories', { json: { title } }).json();
     },
     onError: () => {
       toast.error('Error');
@@ -27,10 +26,9 @@ export default function CategoryForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputTitle.current && inputImgURL.current) {
-      addCategory({ title: inputTitle.current.value });
+    if (inputTitle.current) {
+      addCategory(inputTitle.current.value);
       inputTitle.current.value = '';
-      inputImgURL.current.value = '';
     }
   };
 
