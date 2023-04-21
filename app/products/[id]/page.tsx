@@ -8,7 +8,6 @@ type ProductProps = {
 };
 
 export default async function Product({ params }: ProductProps) {
-
   const res = await fetch(`${process.env.CLIENT_URL}/api/product?id=${params.id}`);
 
   const product: Product = await res.json();
@@ -20,10 +19,6 @@ export default async function Product({ params }: ProductProps) {
     </main>
   );
 }
-
-
-export async function generateStaticParams() {
-  const data = await fetch(`${process.env.CLIENT_URL}/api/products`);
 
 /* export async function generateStaticParams() {
   const data = await fetch('https://reveur.vercel.app/api/products');
