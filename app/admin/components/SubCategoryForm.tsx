@@ -2,7 +2,7 @@
 
 import ky from 'ky';
 import toast from 'react-hot-toast';
-import fetcher from '@/utils/fecther';
+import fetcher from '@/helpers/fecther';
 import { useRef, FormEvent, useState, ChangeEvent } from 'react';
 import { useQuery, useMutation, isError } from '@tanstack/react-query';
 import { useQueryClient } from '@tanstack/react-query';

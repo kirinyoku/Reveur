@@ -2,7 +2,7 @@
 
 import Card from '@/ui/Card';
 import Loading from '@/ui/Loading';
-import getProducts from '@/utils/getProducts';
+import getProducts from '@/helpers/getProducts';
 
 export default function NewSeason() {
   const { data: products, isLoading } = getProducts();

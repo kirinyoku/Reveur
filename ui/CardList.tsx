@@ -2,10 +2,10 @@
 
 import Card from '@/ui/Card';
 import Loading from './Loading';
-import fetcher from '@/utils/fecther';
+import fetcher from '@/helpers/fecther';
 import { useQuery } from '@tanstack/react-query';
 import useFilterStore from '@/store/filter';
-import getProducts from '@/utils/getProducts';
+import getProducts from '@/helpers/getProducts';
 
 export default function CardList() {
   const { data: products, isLoading } = getProducts();

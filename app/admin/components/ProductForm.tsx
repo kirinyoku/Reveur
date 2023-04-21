@@ -1,7 +1,7 @@
 'use client';
 
 import ky from 'ky';
-import fetcher from '@/utils/fecther';
+import fetcher from '@/helpers/fecther';
 import toast from 'react-hot-toast';
 import { FormEvent, ChangeEvent, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

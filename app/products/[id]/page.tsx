@@ -8,7 +8,7 @@ type ProductProps = {
 };
 
 export default async function Product({ params }: ProductProps) {
-  const res = await fetch(`${process.env.BASE_URL}/api/product?id=${params.id}`);
+  const res = await fetch(`http://localhost:3000/api/product?id=${params.id}`);
   const product: Product = await res.json();
 
   return (
@@ -20,7 +20,7 @@ export default async function Product({ params }: ProductProps) {
 }
 
 export async function generateStaticParams() {
-  const data = await fetch(`${process.env.BASE_URL}/api/products`);
+  const data = await fetch(`http://localhost:3000/api/products`);
   const products: Product[] = await data.json();
 
   return products.map((product) => ({ id: product.id }));

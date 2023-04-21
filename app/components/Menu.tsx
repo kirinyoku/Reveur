@@ -10,7 +10,7 @@ import useFilterStore from '@/store/filter';
 
 import Link from 'next/link';
 import Loading from '@/ui/Loading';
-import getCategories from '@/utils/getCategories';
+import getCategories from '@/helpers/getCategories';
 
 type TabPanelProps = {
   children?: React.ReactNode;

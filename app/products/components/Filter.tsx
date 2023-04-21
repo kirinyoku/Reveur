@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, FormEvent, useEffect } from 'react';
-import getCategories from '@/utils/getCategories';
+import getCategories from '@/helpers/getCategories';
 import useFilterStore from '@/store/filter';
 
 export default function Filter() {
