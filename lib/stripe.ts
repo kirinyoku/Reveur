@@ -6,4 +6,7 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
   typescript: true,
 });
 
-export const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY || '');
+// public key
+export const stripePromise = loadStripe(
+  'pk_test_51MqIY3JKmZJy0bBPjzlVSKp56Hb37G2ZNcr7xOGu1BMyrALkJSs90crihhdqHcA3WutwEAAixhc7jm8TYTai0teo00t3ROUwhz',
+);
