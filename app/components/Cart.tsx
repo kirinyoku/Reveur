@@ -14,7 +14,7 @@ import WorkOffIcon from '@mui/icons-material/WorkOff';
 export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const products = useCartStore((state) => state.products);
+  const products: CartProduct[] = useCartStore((state) => state.products);
 
   const toggleDrawer = (isOpen: boolean) => (e: React.MouseEvent) => {
     setIsOpen(isOpen);
