@@ -15,6 +15,7 @@ export default function Cart() {
   const [isOpen, setIsOpen] = useState(false);
 
   const products: CartProduct[] = useCartStore((state) => state.products);
+  const resetCart = useCartStore((state) => state.resetCart);
 
   const toggleDrawer = (isOpen: boolean) => (e: React.MouseEvent) => {
     setIsOpen(isOpen);
@@ -26,12 +27,10 @@ export default function Cart() {
       const checkoutSession: any = await ky
         .post('/api/checkout-session', { json: products })
         .json();
-      const result = await stripe!.redirectToCheckout({
+      resetCart();
+      await stripe!.redirectToCheckout({
         sessionId: checkoutSession!.id,
       });
-      if (result.error) {
-        alert(result.error.message);
-      }
     } catch (error) {
       console.log(error);
     }

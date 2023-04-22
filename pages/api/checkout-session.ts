@@ -1,3 +1,4 @@
+import prisma from '@/prisma/client';
 import { stripe } from '@/lib/stripe';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -22,11 +23,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         mode: 'payment',
         line_items: lineItems,
         payment_method_types: ['card'],
-        success_url: `${process.env.CLIENT_URL}/?success=true`,
-        cancel_url: `${process.env.CLIENT_URL}/?success=false`,
+        success_url: `${process.env.CLIENT_URL}/success`,
+        cancel_url: `${process.env.CLIENT_URL}/cancel`,
         shipping_address_collection: { allowed_countries: ['US', 'CA', 'UA', 'PL', 'GB'] },
       });
-      // res.redirect(303, session.url as string);
+      // Add order to database
+      await prisma.order.create({
+        data: {
+          stripeID: session.id,
+          products,
+        },
+      });
       res.status(200).json(session);
     } catch (error: any) {
       console.log(error);
