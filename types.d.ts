@@ -34,3 +34,9 @@ type CartProduct = {
   size: string;
   quantity: number;
 };
+
+type Order = {
+  id: string;
+  stripeID: string;
+  products: CartProduct[];
+};

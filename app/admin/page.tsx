@@ -4,6 +4,7 @@ import CategoryForm from './components/CategoryForm';
 import SubCategoryForm from './components/SubCategoryForm';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import Orders from './components/Orders';
 
 export default async function Admin() {
   const session = await getServerSession(authOptions);
@@ -22,6 +23,7 @@ export default async function Admin() {
           <CategoryForm />
           <SubCategoryForm />
           <ProductForm />
+          <Orders />
         </div>
       </section>
     );
