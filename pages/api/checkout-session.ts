@@ -25,6 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         payment_method_types: ['card'],
         success_url: `${process.env.CLIENT_URL}/success`,
         cancel_url: `${process.env.CLIENT_URL}/cancel`,
+        phone_number_collection: { enabled: true },
         shipping_address_collection: { allowed_countries: ['US', 'CA', 'UA', 'PL', 'GB'] },
       });
       // Add order to database
