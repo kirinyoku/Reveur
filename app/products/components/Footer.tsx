@@ -9,8 +9,7 @@ export default function Footer() {
   const [message, setMessage] = useState('');
   const emailRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (emailRef.current?.value) {
       const email = emailRef.current.value;
       const res: any = await ky.post('/api/newsletter', { json: email }).json();
@@ -26,18 +25,19 @@ export default function Footer() {
   return (
     <footer className="pb-4 pt-8 px-8">
       <section className="flex flex-col justify-between h-64 md:h-72">
-        <form className="flex flex-col gap-4 max-w-sm" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 max-w-sm">
           <label htmlFor="email" className="uppercase text-xl font-semibold">
             sign up for our newsletter
           </label>
           <input
             type="email"
             id="email"
+            required
             placeholder="enter your email here"
             className="text-black placeholder-slate-400 text-lg border-b border-slate-400 outline-none py-2 placeholder:uppercase"
           />
           {message && <p className="text-red-500 text-sm mt-1">{message}</p>}
-          <Button>submit</Button>
+          <Button onClick={handleSubmit}>submit</Button>
         </form>
         <ul className="flex flex-wrap justify-center md:justify-start gap-4 text-sm md:text-lg uppercase">
           <li>
