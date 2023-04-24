@@ -1,65 +1,33 @@
-'use client';
-
-import ky from 'ky';
-import React from 'react';
-import Button from '@/ui/Button';
-import { FormEvent, useRef, useState } from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
-  const [message, setMessage] = useState('');
-  const emailRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = async () => {
-    if (emailRef.current?.value) {
-      const email = emailRef.current.value;
-      const res: any = await ky.post('/api/newsletter', { json: email }).json();
-      if (res?.email) {
-        setMessage('');
-        emailRef.current!.value = '';
-      } else {
-        setMessage(res.message);
-      }
-    }
-  };
-
   return (
-    <footer className="pb-4 pt-8 px-8">
+    <footer className="py-8">
       <section className="flex flex-col justify-between h-64 md:h-72">
-        <form className="flex flex-col gap-4 max-w-sm">
-          <label htmlFor="email" className="uppercase text-xl font-semibold">
-            sign up for our newsletter
-          </label>
-          <input
-            type="email"
-            id="email"
-            required
-            placeholder="enter your email here"
-            className="text-black placeholder-slate-400 text-lg border-b border-slate-400 outline-none py-2 placeholder:uppercase"
-          />
-          {message && <p className="text-red-500 text-sm mt-1">{message}</p>}
-          <Button onClick={handleSubmit}>submit</Button>
-        </form>
-        <ul className="flex flex-wrap justify-center md:justify-start gap-4 text-sm md:text-lg uppercase">
+        <h2 className="text-2xl bg-black w-full  text-white text-center p-2">
+          <Link href="/newsletter">SIGN UP FOR OUR NEWSLETTER</Link>
+        </h2>
+        <ul className="flex flex-wrap justify-center gap-4 text-sm md:text-lg uppercase">
           <li>
-            <a href="/" target="_blank">
+            <a href="https://www.tiktok.com" target="_blank">
               tiktok
             </a>
           </li>
           <li>
-            <a href="/" target="_blank">
+            <a href="https://www.instagram.com" target="_blank">
               instagram
             </a>
           </li>
           <li>
-            <a href="/">facebook</a>
+            <a href="https://www.facebook.com">facebook</a>
           </li>
           <li>
-            <a href="/" target="_blank">
+            <a href="https://twitter.com" target="_blank">
               twitter
             </a>
           </li>
           <li>
-            <a href="/" target="_blank">
+            <a href="https://www.youtube.com" target="_blank">
               youtube
             </a>
           </li>

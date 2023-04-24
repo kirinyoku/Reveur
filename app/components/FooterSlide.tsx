@@ -8,25 +8,25 @@ export default function FooterSlide() {
       </h2>
       <ul className="flex flex-wrap justify-center gap-4 text-sm md:text-lg">
         <li>
-          <a href="/" target="_blank">
+          <a href="https://www.tiktok.com" target="_blank">
             tiktok
           </a>
         </li>
         <li>
-          <a href="/" target="_blank">
+          <a href="https://www.instagram.com" target="_blank">
             instagram
           </a>
         </li>
         <li>
-          <a href="/">facebook</a>
+          <a href="https://www.facebook.com">facebook</a>
         </li>
         <li>
-          <a href="/" target="_blank">
+          <a href="https://twitter.com" target="_blank">
             twitter
           </a>
         </li>
         <li>
-          <a href="/" target="_blank">
+          <a href="https://www.youtube.com" target="_blank">
             youtube
           </a>
         </li>
