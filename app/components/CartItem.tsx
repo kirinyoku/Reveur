@@ -16,10 +16,7 @@ export default function CartItem({ product }: { product: CartProduct }) {
       <img className="w-20 h-26 object-cover" src={product.img} alt="product" />
       <div className="flex flex-col justify-between">
         <h3 className="text-lg text-slate-700 font-medium">{product.title}</h3>
-        <p className="hidden md:block text-gray-600">
-          {product.description.substring(0, 110)}
-          ...
-        </p>
+        <p className="hidden md:block text-gray-600 text-sm">{product.description}</p>
         <h4 className="uppercase text-slate-700 font-medium">size {product.size}</h4>
         <strong className="text-lg font-medium">
           {`${product.quantity} × ${product.price.toFixed(2)} (${(

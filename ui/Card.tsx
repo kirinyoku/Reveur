@@ -29,7 +29,7 @@ export default function Card({ product }: CardProps) {
         </div>
         <h3 className="text-xl font-base">{product.title}</h3>
         <div className="flex gap-3 text-lg">
-          {product.oldPrice && (
+          {product.oldPrice !== 0 && (
             <del className="text-gray-700 line-through">${product.oldPrice.toFixed(2)}</del>
           )}
           <strong className="font-semibold">${product.currentPrice.toFixed(2)}</strong>

@@ -5,8 +5,8 @@ import Button from '@/ui/Button';
 import { FormEvent, useRef, useState } from 'react';
 
 export default function Newsletter() {
-  const emailRef = useRef<HTMLInputElement>(null);
   const [message, setMessage] = useState('');
+  const emailRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
