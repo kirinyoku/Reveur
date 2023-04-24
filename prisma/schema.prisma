@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,42 +10,42 @@ datasource db {
 model Category {
   id             String        @id @default(cuid())
   title          String        @unique
-  products       Product[]
-  sub_categories SubCategory[]
+  imgURL         String
+  products       Product[]     @relation("CategoryToProduct")
+  sub_categories SubCategory[] @relation("CategoryToSubCategory")
 }
 
 model SubCategory {
   id         String     @id @default(cuid())
   title      String     @unique
-  products   Product[]
-  categories Category[]
-}
-
-enum EnumProductType {
-  NORMAL
-  FEATURED
-  TRENDING
+  categories Category[] @relation("CategoryToSubCategory")
+  products   Product[]  @relation("ProductToSubCategory")
 }
 
 model Product {
   id             String          @id @default(cuid())
   title          String          @unique
-  description    String
   brand          String
-  imgURL         String
-  img2URL        String
   currentPrice   Float
   oldPrice       Float
   isNew          Boolean         @default(false)
   type           EnumProductType @default(NORMAL)
-  categories     Category[]
-  sub_categories SubCategory[]
+  description    String
+  img2URL        String
+  imgURL         String
+  categories     Category[]      @relation("CategoryToProduct")
+  sub_categories SubCategory[]   @relation("ProductToSubCategory")
 }
 
 model Order {
   id       String @id @default(cuid())
-  stripeID String
   products Json
+  stripeID String
+}
+
+model Email {
+  id    String  @id @default(cuid())
+  email String? @unique
 }
 
 model Account {
@@ -57,15 +54,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -78,11 +74,6 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum UserRole {
-  ADMIN
-  USER
-}
-
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -90,9 +81,8 @@ model User {
   emailVerified DateTime?
   image         String?
   role          UserRole  @default(USER)
-
-  accounts Account[]
-  sessions Session[]
+  accounts      Account[]
+  sessions      Session[]
 }
 
 model VerificationToken {
@@ -101,4 +91,15 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum EnumProductType {
+  NORMAL
+  FEATURED
+  TRENDING
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }
