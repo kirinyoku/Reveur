@@ -4,6 +4,11 @@ import ky from 'ky';
 import Button from '@/ui/Button';
 import { FormEvent, useRef, useState } from 'react';
 
+export const metadata = {
+  title: 'Sign up for our newsletter',
+  description: 'Enter your email and get the latest news and trends every week.',
+};
+
 export default function Newsletter() {
   const [message, setMessage] = useState('');
   const emailRef = useRef<HTMLInputElement>(null);

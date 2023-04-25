@@ -6,7 +6,7 @@ export default function FooterSlide() {
       <h2 className="text-2xl bg-black w-full  text-white text-center p-2">
         <Link href="/newsletter">SIGN UP FOR OUR NEWSLETTER</Link>
       </h2>
-      <ul className="flex flex-wrap justify-center gap-4 text-sm md:text-lg">
+      <ul className="flex flex-wrap justify-center px-2 gap-4 text-sm md:text-lg">
         <li>
           <a href="https://www.tiktok.com" target="_blank">
             tiktok
@@ -36,10 +36,14 @@ export default function FooterSlide() {
           <a href="/">cookies settings</a>
         </li>
         <li>
-          <a href="/">privacy and cookies policy</a>
+          <a href="https://static.zara.net/static/pdfs/CA/privacy-policy/privacy-policy-en_CA-20210801.pdf">
+            privacy and cookies policy
+          </a>
         </li>
         <li>
-          <a href="/">terms of use</a>
+          <a href="https://static.zara.net/static/pdfs/CA/terms-and-conditions/terms-and-conditions-en_CA-20220412.pdf">
+            terms of use
+          </a>
         </li>
       </ul>
     </section>

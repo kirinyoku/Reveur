@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Info from './components/Info';
 import Preview from './components/Preview';
 
@@ -6,6 +7,16 @@ type ProductProps = {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: ProductProps): Promise<Metadata> {
+  const res = await fetch(`${process.env.CLIENT_URL}/api/product?id=${params.id}`);
+  const product: Product = await res.json();
+
+  return {
+    title: product.title,
+    description: product.description,
+  };
+}
 
 export default async function Product({ params }: ProductProps) {
   const res = await fetch(`${process.env.CLIENT_URL}/api/product?id=${params.id}`);

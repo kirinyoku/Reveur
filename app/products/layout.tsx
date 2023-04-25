@@ -1,9 +1,5 @@
 import { ReactNode } from 'react';
-import Footer from './components/Footer';
-
-export const metadata = {
-  title: 'Products',
-};
+import Footer from '../components/Footer';
 
 export default function ProductsLayout({ children }: { children: ReactNode }) {
   return (

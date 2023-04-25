@@ -23,7 +23,7 @@ export default async function Admin() {
           <CategoryForm />
           <SubCategoryForm />
           <ProductForm />
-          <Orders />
+          {/* <Orders /> */}
         </div>
       </section>
     );

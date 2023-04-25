@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     return NextResponse.error();
   }
 
-  const res = await prisma.product.findFirst({
+  const res = await prisma.product.findUnique({
     where: {
       id: id,
     },

@@ -4,6 +4,12 @@ import Card from '@/ui/Card';
 import Loading from '@/ui/Loading';
 import getProducts from '@/helpers/getProducts';
 
+export const metadata = {
+  title: 'TRENDING',
+  description:
+    "Here, you'll find the most popular items from our top brands, all in one place. From statement pieces to everyday essentials, these are the styles that everyone is talking about.",
+};
+
 export default function Trending() {
   const { data: products, isLoading } = getProducts();
 
