@@ -4,12 +4,6 @@ import Card from '@/ui/Card';
 import Loading from '@/ui/Loading';
 import getProducts from '@/helpers/getProducts';
 
-export const metadata = {
-  title: 'NEW SEASON',
-  description:
-    "This section is where you'll find the latest and greatest styles from our top brands. From fresh prints to modern silhouettes, we're always updating our inventory to keep you on-trend and looking your best.",
-};
-
 export default function NewSeason() {
   const { data: products, isLoading } = getProducts();
 
