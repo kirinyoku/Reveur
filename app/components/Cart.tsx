@@ -1,10 +1,10 @@
 'use client';
 
+import ky from 'ky';
 import { useState } from 'react';
 import { SwipeableDrawer, Box, Badge } from '@mui/material';
 import { stripePromise } from '@/lib/stripe';
-import ky from 'ky';
-import Button from '@/ui/Button';
+import { Button } from '@/ui/Button';
 import CartItem from './CartItem';
 import CloseIcon from '@mui/icons-material/Close';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
@@ -78,7 +78,7 @@ export default function Cart() {
               </div>
             </div>
             <div className="grid gap-2 px-2 py-2">
-              <Button onClick={submitPayment} variant="secondary">
+              <Button variant="default" onClick={submitPayment}>
                 proceed to checkout
               </Button>
             </div>

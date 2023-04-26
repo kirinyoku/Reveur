@@ -1,7 +1,7 @@
 'use client';
 
 import ky from 'ky';
-import Button from '@/ui/Button';
+import { Button } from '@/ui/Button';
 import { FormEvent, useRef, useState } from 'react';
 
 export default function Newsletter() {
@@ -49,7 +49,9 @@ export default function Newsletter() {
               </a>
             </label>
           </fieldset>
-          <Button>submit</Button>
+          <Button variant="default" type="submit">
+            submit
+          </Button>
         </form>
       </section>
     </main>

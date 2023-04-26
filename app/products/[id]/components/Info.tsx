@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import Button from '@/ui/Button';
+import { Button } from '@/ui/Button';
 import useCartStore from '@/store/cart';
 
 export default function Info({ product }: { product: Product }) {
@@ -65,7 +65,7 @@ export default function Info({ product }: { product: Product }) {
           ))}
         </Listbox.Options>
       </Listbox>
-      <Button variant="primary" onClick={add}>
+      <Button variant="default" onClick={add}>
         <AddShoppingCartIcon /> add to cart
       </Button>
       <ul className="flex flex-col gap-2 text-gray-500 uppercase">

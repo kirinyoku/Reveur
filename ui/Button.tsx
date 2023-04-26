@@ -1,31 +1,33 @@
-import { ReactNode } from 'react';
+import { cn } from '@/helpers/cn';
+import * as React from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
 
-type ButtonProps = {
-  children: ReactNode;
-  variant?: 'primary' | 'secondary';
-  onClick?: () => void;
-};
+const buttonVariants = cva('text-lg uppercase border border-black py-2 px-8 transition-colors', {
+  variants: {
+    variant: {
+      default: 'bg-black hover:bg-transparent text-white hover:text-black',
+      outline: 'hover:bg-black hover:text-white',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
-export default function Button({ children, variant, onClick }: ButtonProps) {
-  if (!variant) {
-    variant = 'primary';
-  }
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
 
-  if (variant === 'primary') {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, variant, ...props }, ref) => {
     return (
-      <button
-        onClick={onClick}
-        className="text-lg uppercase border border-black py-2 px-8 bg-black hover:bg-transparent text-white hover:text-black transition-colors">
+      <button className={cn(buttonVariants({ variant, className }))} ref={ref} {...props}>
         {children}
       </button>
     );
-  } else {
-    return (
-      <button
-        onClick={onClick}
-        className="text-lg uppercase border border-black py-2 px-8 hover:bg-black hover:text-white transition-colors">
-        {children}
-      </button>
-    );
-  }
-}
+  },
+);
+
+Button.displayName = 'Button';
+
+export { Button, buttonVariants };
