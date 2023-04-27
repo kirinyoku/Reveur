@@ -1,5 +1,6 @@
-import { cn } from '@/helpers/cn';
 import * as React from 'react';
+import { cn } from '@/helpers/cn';
+import Loading from './Loading';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva('text-lg uppercase border border-black py-2 px-8 transition-colors', {
@@ -16,13 +17,19 @@ const buttonVariants = cva('text-lg uppercase border border-black py-2 px-8 tran
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  isLoading?: boolean;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, variant, ...props }, ref) => {
+  ({ className, children, variant, isLoading, ...props }, ref) => {
     return (
-      <button className={cn(buttonVariants({ variant, className }))} ref={ref} {...props}>
-        {children}
+      <button
+        className={cn(buttonVariants({ variant, className }))}
+        ref={ref}
+        {...props}
+        disabled={isLoading}>
+        {isLoading ? <Loading /> : children}
       </button>
     );
   },

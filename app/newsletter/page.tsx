@@ -1,14 +1,17 @@
 'use client';
 
 import ky from 'ky';
+import toast from 'react-hot-toast';
 import { Button } from '@/ui/Button';
 import { FormEvent, useRef, useState } from 'react';
 
 export default function Newsletter() {
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const emailRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     if (emailRef.current?.value) {
       const email = emailRef.current.value;
@@ -16,8 +19,12 @@ export default function Newsletter() {
       if (res?.email) {
         setMessage('');
         emailRef.current!.value = '';
+        toast.success('Thank you');
+        setLoading(false);
       } else {
         setMessage(res.message);
+        toast.error(res.message);
+        setLoading(false);
       }
     }
   };
@@ -49,7 +56,7 @@ export default function Newsletter() {
               </a>
             </label>
           </fieldset>
-          <Button variant="default" type="submit">
+          <Button variant="default" type="submit" isLoading={loading}>
             submit
           </Button>
         </form>
