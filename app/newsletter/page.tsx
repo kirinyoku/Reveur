@@ -1,9 +1,14 @@
 'use client';
 
 import ky from 'ky';
-import toast from 'react-hot-toast';
+import { toast } from '@/ui/toast';
 import { Button } from '@/ui/Button';
 import { FormEvent, useRef, useState } from 'react';
+
+type Response = {
+  email?: string;
+  message?: string;
+};
 
 export default function Newsletter() {
   const [message, setMessage] = useState('');
@@ -15,15 +20,21 @@ export default function Newsletter() {
     e.preventDefault();
     if (emailRef.current?.value) {
       const email = emailRef.current.value;
-      const res: any = await ky.post('/api/newsletter', { json: email }).json();
+      const res: Response = await ky.post('/api/newsletter', { json: email }).json();
       if (res?.email) {
         setMessage('');
         emailRef.current!.value = '';
-        toast.success('Thank you');
+        toast({
+          type: 'success',
+          message: 'Thank you',
+        });
         setLoading(false);
-      } else {
+      } else if (res?.message) {
         setMessage(res.message);
-        toast.error(res.message);
+        toast({
+          type: 'error',
+          message: res.message,
+        });
         setLoading(false);
       }
     }
